@@ -300,11 +300,6 @@ bool terminal<TerminalHelper>::show(const std::vector<config_panels>& panels_ord
 		m_has_focus = false;
 	}
 
-	if (!ImGui::Begin(m_window_name, nullptr, ImGuiWindowFlags_NoScrollbar | m_flags)) {
-		ImGui::End();
-		ImGui::PopStyleColor(pop_count);
-		return true;
-	}
 	m_current_size = ImGui::GetWindowSize();
 
 	display_settings_bar(panels_order);
@@ -313,7 +308,6 @@ bool terminal<TerminalHelper>::show(const std::vector<config_panels>& panels_ord
 	try_unlock();
 	display_command_line();
 
-	ImGui::End();
 	ImGui::PopStyleColor(pop_count);
 
 	return m_should_show_next_frame;
